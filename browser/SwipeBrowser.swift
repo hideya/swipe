@@ -47,6 +47,7 @@ class SwipeBrowser: UIViewController, SwipeDocumentViewerDelegate {
     
     public weak var delegate:SwipeBrowserDelegate?
     var notificationManager = SNNotificationManager()
+    var prefersUIHidden = false
 
 #if os(iOS)
     private var fVisibleUI = true
@@ -317,7 +318,7 @@ class SwipeBrowser: UIViewController, SwipeDocumentViewerDelegate {
 
     @IBAction func tapped() {
         MyLog("SWBrows tapped", level: 1)
-        if fVisibleUI {
+        if fVisibleUI || prefersUIHidden {
             hideUI()
         } else {
             showUI()
@@ -332,7 +333,7 @@ class SwipeBrowser: UIViewController, SwipeDocumentViewerDelegate {
         })
     }
     
-    private func hideUI() {
+    /*private*/ func hideUI() {
         fVisibleUI = false
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.toolbar?.alpha = 0.0

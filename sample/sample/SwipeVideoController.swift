@@ -281,4 +281,21 @@ extension SwipeVideoController: SwipeDocumentViewer {
     func pageCount() -> Int? {
         return pages.count
     }
+
+    func pause() {
+        videoPlayer.pause()
+    }
+
+    func resume() {
+        videoPlayer.play()
+    }
+
+    func togglePause() {
+        let status = videoPlayer.timeControlStatus;
+        if (status == AVPlayerTimeControlStatus.playing) {
+            videoPlayer.pause()
+        } else if (status == AVPlayerTimeControlStatus.paused) {
+            videoPlayer.play()
+        }
+    }
 }
